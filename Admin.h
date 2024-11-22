@@ -15,7 +15,7 @@ private:
 public:
     Admin(int i);
     void adminMenu();
-    void login(const string& username, const string& password);
+    void adminLogin(const string& username, const string& password);
     // void updateAvailableCars(const Car& car);
     // bool verifyCarReturn(const string& bookingID);
     // bool confirmPayment(const string& bookingID);

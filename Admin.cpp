@@ -18,7 +18,7 @@ void Admin::adminMenu() {
     cin >> choice;
 };
 
-void Admin::login(const string& username, const string& password) {
+void Admin::adminLogin(const string& username, const string& password) {
     string usernameInput;
     string passwordInput;
 

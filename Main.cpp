@@ -8,7 +8,7 @@ int main() {
     string username = "admin";
     string password = "admin";
     Admin tes(1);
-    tes.login(username, password);
+    tes.adminLogin(username, password);
 
     return 0;
 }
