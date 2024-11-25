@@ -1,5 +1,5 @@
 #pragma once
-#define CUSTOMER_H 
+
 
 #include <string>
 
@@ -15,7 +15,7 @@ private:
     string customerPassword;
 public:
     Customer(int j);
-    void customerRegister();
+    void customerRegister(const string &username , const string &password);
     void customerLogin();
     void viewAvailableCars();
     int bookCar();

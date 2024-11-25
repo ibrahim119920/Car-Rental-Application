@@ -7,6 +7,8 @@ using namespace std;
 
 Customer::Customer(int j): customer(j) {}
 
-void Customer::customerRegister() {
+void Customer::customerRegister(const string &username , const string &password) {
+    
+    cout << "halo";
     
 }
