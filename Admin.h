@@ -14,6 +14,7 @@ private:
     // string password;
 public:
     Admin(int i);
+    ~Admin();
     void adminMenu();
     void adminLogin(const string& username, const string& password);
     // void updateAvailableCars(const Car& car);

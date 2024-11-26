@@ -81,19 +81,19 @@ void Customer::customerLogin() {
 
 
 
-void Customer::displayCustomers() {
-    cout << "\nDaftar Pelanggan Terdaftar:\n";
-    if (customers.empty()) {
-        cout << "Belum ada pelanggan yang terdaftar.\n";
-        return;
-    }
+// void Customer::displayCustomers() {
+//     cout << "\nDaftar Pelanggan Terdaftar:\n";
+//     if (customers.empty()) {
+//         cout << "Belum ada pelanggan yang terdaftar.\n";
+//         return;
+//     }
 
-    for (const auto &customer : customers) {
-        cout << "Nama: " << customer.name
-             << ", Email: " << customer.email
-             << ", ID: " << customer.customerID << "\n";
-    }
-}
+//     for (const auto &customer : customers) {
+//         cout << "Nama: " << customer.name
+//              << ", Email: " << customer.email
+//              << ", ID: " << customer.customerID << "\n";
+//     }
+// }
 
 int main() {
     Customer::customerLogin();
