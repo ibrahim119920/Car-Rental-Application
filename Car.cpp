@@ -1,13 +1,12 @@
 #include <iostream>
 #include <string>
-#include "Car.h""
+#include <vector>
+#include "Car.h"
 
 using namespace std;
 
+vector<Car> Car::cars;
+
 Car::Car() {
 
-}
-
-void Car::updateAvailability() {
-    
 }

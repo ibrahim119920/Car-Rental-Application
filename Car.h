@@ -2,12 +2,14 @@
 #define CAR_H 
 
 #include <string>
+#include ""
 
 using namespace std;
 
-class Car
+class Car: public
 {
 private:
+    static vector<Car> cars;
     string carID;
     string model;
     string brand;
@@ -16,6 +18,6 @@ private:
 public:
     Car(/* args */);
     ~Car();
-    void updateAvailability();
+    void bookCar();
 };
 

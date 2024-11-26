@@ -1,0 +1,5 @@
+1 Honda Jazz 1000000 true
+2 Toyota Innova 2000000 true
+3 Nissan Serena 2000000 true
+4 Toyota Alphard 4000000 true
+5 Suzuki Ertiga 1500000 true
