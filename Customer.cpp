@@ -13,6 +13,19 @@ vector<Customer> Customer::customers;
 
 Customer::Customer(string name1, string email1, string customerPassword1, string customerID1) 
     : name(name1), email(email1), customerPassword(customerPassword1), customerID(customerID1) {}
+string Customer :: get_name(string name){
+    return name ;
+};
+string Customer :: get_email(string email){
+    return email ;
+};
+string Customer :: get_customerPassword(string password){
+    return password ;
+};
+string Customer :: get_customerID(string CustomerID){
+    return customerID;
+};
+
 
 void Customer::customerRegister() {
     string name, email, password, customerID;
@@ -81,6 +94,38 @@ void Customer::customerLogin() {
 
 
 
+void viewAvailableCars() {
+    ifstream inFile("AvaibleCar.txt");
+    if (!inFile) {
+        cerr << "Error: Unable to open file!" << endl;
+         // Menghentikan fungsi jika file tidak dapat dibuka
+    }
+
+    string carID1, model1, brand1;
+    bool status;
+    double rate1;
+
+    cout << "======================================" << endl;
+    cout << "    Available Cars Information        " << endl;
+    cout << "======================================" << endl;
+    cout << "CarID\tModel\tBrand\tRate\tStatus" << endl;
+    cout << "--------------------------------------" << endl;
+
+    while (inFile >> carID1 >> model1 >> brand1 >> status >> rate1) {
+        // Tampilkan hanya jika status adalah true (1)
+        if (status) {
+            cout << carID1 << "\t" << model1 << "\t" << brand1 << "\t" 
+                 << rate1 << "\t" << (status ? "Ready" : "Not Ready") << endl;
+        }
+    }
+
+    inFile.close();
+    cout << "======================================" << endl;
+}
+
+
+
+
 // void Customer::displayCustomers() {
 //     cout << "\nDaftar Pelanggan Terdaftar:\n";
 //     if (customers.empty()) {
@@ -96,8 +141,9 @@ void Customer::customerLogin() {
 // }
 
 int main() {
-    Customer::customerLogin();
+    // Customer::customerLogin();
     // Customer::customerRegister();
     // Customer::displayCustomers();
+    Customer ::viewAvailableCars();
     return 0;
 }
