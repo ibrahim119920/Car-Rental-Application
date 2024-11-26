@@ -25,8 +25,9 @@ public:
     static void customerRegister();
     // static void displayCustomers(); // Tambahkan metode untuk menampilkan daftar pelanggan
     static void customerLogin();
-    static  void viewAvailableCars();
-    int bookCar();
-    int extendRent();
-    void returnCar();
+    static void customerMenu();
+    static void viewAvailableCars();
+    static int bookCar();
+    static int extendRent();
+    static void returnCar();
 };

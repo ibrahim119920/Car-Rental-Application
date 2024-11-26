@@ -71,10 +71,6 @@ int Customer::checkDatabase(string name, string password) {
     return 0; // Nama dan kata sandi tidak ditemukan
 }
 
-// string Customer::get_email();
-// string Customer::get_customerPassword();
-// string Customer::get_customerID();
-
 void Customer::customerLogin() {
     string nama2;
     string password2;
@@ -139,6 +135,43 @@ void Customer::viewAvailableCars() {
 //              << ", ID: " << customer.customerID << "\n";
 //     }
 // }
+
+void Customer::returnCar(){
+    int n;
+
+    if (n == 1)
+    {
+        cout << "Anda tidak sedang menyewa mobil!";
+
+    }
+    
+};
+
+void Customer::customerMenu() {
+    int choice;
+    cout << "Pilih menu yang ingin diakses: \n";
+    cout << "1. Lihat mobil yang tersedia.\n";
+    cout << "2. Kembalikan mobil\n";
+    cout << "3. Perpanjang mobil.\n";
+    cout << "Pilihan: ";
+    cin >> choice;
+    switch (choice)
+    {
+    case 1:
+        Customer::viewAvailableCars();
+        break;
+
+    case 2:
+        Customer::returnCar();
+        break;
+    
+    case 3:
+        Customer::extendRent();
+    
+    default:
+        break;
+    }
+}
 
 int main() {
     // Customer::customerLogin();
