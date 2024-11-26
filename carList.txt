@@ -1,5 +1,5 @@
-1 Honda Jazz 1000000 true
-2 Toyota Innova 2000000 true
-3 Nissan Serena 2000000 true
-4 Toyota Alphard 4000000 true
-5 Suzuki Ertiga 1500000 true
+1 Jazz Honda 0 1000000 
+2 Innova Toyota 1 2000000 
+3 Serena Nissan 1 2000000 
+4 Alphard Toyota 1 4000000
+5 Ertiga Suzuki 1 1500000 

@@ -94,8 +94,8 @@ void Customer::customerLogin() {
 
 
 
-void viewAvailableCars() {
-    ifstream inFile("AvaibleCar.txt");
+void Customer::viewAvailableCars() {
+    ifstream inFile("carList.txt");
     if (!inFile) {
         cerr << "Error: Unable to open file!" << endl;
          // Menghentikan fungsi jika file tidak dapat dibuka
