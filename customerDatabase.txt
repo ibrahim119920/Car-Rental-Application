@@ -1,3 +1,3 @@
-namasatu emailsatu pwsatu 1 0
-namadua emaildua pwdua 2 0
-namatiga emailtiga pwtiga 3 0
+namasatu emailsatu pwsatu 1
+namadua emaildua pwdua 2
+namatiga emailtiga pwtiga 3
