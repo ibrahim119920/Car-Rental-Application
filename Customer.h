@@ -28,6 +28,6 @@ public:
     static void customerMenu();
     static void viewAvailableCars();
     static int bookCar();
-    static int extendRent();
+    // static int extendRent();
     static void returnCar();
 };

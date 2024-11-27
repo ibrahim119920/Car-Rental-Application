@@ -166,7 +166,7 @@ void Customer::customerMenu() {
         break;
     
     case 3:
-        Customer::extendRent();
+        // Customer::extendRent();
     
     default:
         break;
@@ -174,9 +174,9 @@ void Customer::customerMenu() {
 }
 
 int main() {
-    // Customer::customerLogin();
+    Customer::customerLogin();
     // Customer::customerRegister();
     // Customer::displayCustomers();
-    Customer ::viewAvailableCars();
+    // Customer ::viewAvailableCars();
     return 0;
 }
