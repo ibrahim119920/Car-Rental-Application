@@ -1,18 +1,19 @@
+#include "Car.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "Car.h"
+#include <iomanip>
 
 using namespace std;
 
-// Inisialisasi array dinamis (vector) untuk menyimpan data mobil
+// Inisialisasi vector statis
 vector<Car> Car::cars;
 
 // Default constructor
 Car::Car() : carID(""), model(""), brand(""), availability(false), rate(0) {}
 
 // Parameterized constructor
-Car::Car(string carID, string model, string brand, bool availability, int rate) 
+Car::Car(string carID, string model, string brand, bool availability, int rate)
     : carID(carID), model(model), brand(brand), availability(availability), rate(rate) {}
 
 // Destructor
@@ -25,30 +26,66 @@ string Car::get_brand() const { return brand; }
 int Car::get_rate() const { return rate; }
 bool Car::get_availability() const { return availability; }
 
-// Fungsi untuk membaca data dari file dan mengisi array dinamis
+// Load cars from file
 void Car::loadCarsFromFile(const string& filename) {
-    ifstream inFile(filename);
-    if (!inFile) {
+    ifstream file(filename); // Membuka file
+    if (!file.is_open()) {
         cerr << "Error: Unable to open file " << filename << endl;
         return;
     }
 
-    string carID, model, brand;
-    bool availability;
-    int rate;
+    string line;
+    while (getline(file, line)) {
+        stringstream ss(line); // Membaca setiap baris file
+        string carID, model, brand;
+        bool availability;
+        int rate;
 
-    // Membaca file baris demi baris
-    while (inFile >> carID >> model >> brand >> availability >> rate) {
-        // Membuat objek Car dan menambahkannya ke vector
-        Car car(carID, model, brand, availability, rate);
-        cars.push_back(car);
+        // Parsing data dari baris
+        ss >> carID >> model >> brand >> availability >> rate;
+
+        // Menambahkan data ke vector cars
+        cars.push_back(Car(carID, model, brand, availability, rate));
     }
 
-    inFile.close();
-    cout << "Data loaded successfully from " << filename << endl;
+    file.close(); // Menutup file
 }
 
-// Fungsi untuk mendapatkan semua mobil dari array dinamis
+// Get all cars
 const vector<Car>& Car::getAllCars() {
     return cars;
+}
+
+// Display a single car's attributes
+void Car::displayCar() const {
+    cout << left << setw(10) << carID
+         << setw(15) << model
+         << setw(15) << brand
+         << setw(15) << (availability ? "Available" : "Not Available")
+         << "Rp " << rate << endl;
+}
+
+// Display all cars
+void Car::displayAllCars() {
+    cout << left << setw(10) << "CarID"
+         << setw(15) << "Model"
+         << setw(15) << "Brand"
+         << setw(15) << "Availability"
+         << "Rate" << endl;
+    cout << string(70, '-') << endl;
+
+    for (const auto& car : cars) {
+        car.displayCar();
+    }
+}
+
+int main() {
+    // Load cars data from file
+    Car::loadCarsFromFile("carList.txt");
+
+    // Display all cars
+    cout << "List of Cars:" << endl;
+    Car::displayAllCars();
+
+    return 0;
 }

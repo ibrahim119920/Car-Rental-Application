@@ -5,6 +5,7 @@
 #include "Car.h"
 #include "Customer.h"
 
+
 class Booking: public Customer, public Car
 {
 private:
@@ -13,12 +14,7 @@ private:
 public:
     Booking(/* args */);
     ~Booking();
+    void bookCar(string get_carID);
+    void payCar(); 
 };
 
-Booking::Booking(/* args */)
-{
-}
-
-Booking::~Booking()
-{
-}
