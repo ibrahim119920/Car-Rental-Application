@@ -1,7 +1,9 @@
 #pragma once
 #define CONTROLLER_H
 
-class Controller
+#include "Customer.h"
+
+class Controller: public Customer
 {
 private:
     /* data */

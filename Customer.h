@@ -2,11 +2,10 @@
 
 #include <string>
 #include <vector>
-#include "Controller.h"
 
 using namespace std;
 
-class Customer: public Controller
+class Customer
 {
 private:
     static vector<Customer> customers; // Array dinamis untuk menyimpan pelanggan
