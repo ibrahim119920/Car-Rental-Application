@@ -10,5 +10,6 @@ private:
 public:
     Controller(/* args */);
     ~Controller();
+    void gettingStart();
 };
 
