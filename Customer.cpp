@@ -11,6 +11,10 @@ using namespace std;
 // Inisialisasi vector pelanggan
 vector<Customer> Customer::customers;
 
+Customer::Customer() {
+
+}
+
 Customer::Customer(string name1, string email1, string customerPassword1, string customerID1) 
     : name(name1), email(email1), customerPassword(customerPassword1), customerID(customerID1) {}
 string Customer :: get_name(string name){
@@ -27,30 +31,7 @@ string Customer :: get_customerID(string CustomerID){
 };
 
 
-void Customer::customerRegister() {
-    string name, email, password, customerID;
 
-    cout << "Masukkan nama: ";
-    cin >> name;
-    cout << "Masukkan email: ";
-    cin >> email;
-    cout << "Masukkan password: ";
-    cin >> password;
-    cout << "Masukkan ID pelanggan: ";
-    cin >> customerID;
-
-    // Buat objek Customer baru dan tambahkan ke vector
-    Customer newCustomer(name, email, password, customerID);
-    customers.push_back(newCustomer);
-
-    ofstream newFile("customerDatabase.txt", ofstream::app);
-    newFile << name << " "
-            << email << " " 
-            << password << " "
-            << customerID << endl;
-
-    cout << "Pelanggan berhasil didaftarkan!\n";
-}
 
 int Customer::checkDatabase(string name, string password) {
     ifstream inFile("customerDatabase.txt");
@@ -71,23 +52,30 @@ int Customer::checkDatabase(string name, string password) {
     return 0; // Nama dan kata sandi tidak ditemukan
 }
 
-void Customer::customerLogin() {
-    string nama2;
-    string password2;
+// void Customer::displayCustomers() {
+//     cout << "\nDaftar Pelanggan Terdaftar:\n";
+//     if (customers.empty()) {
+//         cout << "Belum ada pelanggan yang terdaftar.\n";
+//         return;
+//     }
 
-    do
+//     for (const auto &customer : customers) {
+//         cout << "Nama: " << customer.name
+//              << ", Email: " << customer.email
+//              << ", ID: " << customer.customerID << "\n";
+//     }
+// }
+
+void Customer::returnCar(){
+    int n;
+
+    if (n == 1)
     {
-        cout << "Nama : ";
-        cin >> nama2;
-        cout << "Password : ";
-        cin >> password2;
+        cout << "Anda tidak sedang menyewa mobil!";
 
-    } while (Customer::checkDatabase(nama2, password2) == 0);
+    }
     
-    cout << "Berhasil login";
-
 };
-
 
 
 void Customer::viewAvailableCars() {
@@ -117,35 +105,12 @@ void Customer::viewAvailableCars() {
 
     inFile.close();
     cout << "======================================" << endl;
+    int i;
+    cout << "Pilih mobil yang ingin disewa: ";
+    cin >> i;
+    
 }
 
-
-
-
-// void Customer::displayCustomers() {
-//     cout << "\nDaftar Pelanggan Terdaftar:\n";
-//     if (customers.empty()) {
-//         cout << "Belum ada pelanggan yang terdaftar.\n";
-//         return;
-//     }
-
-//     for (const auto &customer : customers) {
-//         cout << "Nama: " << customer.name
-//              << ", Email: " << customer.email
-//              << ", ID: " << customer.customerID << "\n";
-//     }
-// }
-
-void Customer::returnCar(){
-    int n;
-
-    if (n == 1)
-    {
-        cout << "Anda tidak sedang menyewa mobil!";
-
-    }
-    
-};
 
 void Customer::customerMenu() {
     int choice;
@@ -173,10 +138,74 @@ void Customer::customerMenu() {
     }
 }
 
-int main() {
-    Customer::customerLogin();
-    // Customer::customerRegister();
-    // Customer::displayCustomers();
-    // Customer ::viewAvailableCars();
-    return 0;
+
+void Customer::customerLogin() {
+    string nama2;
+    string password2;
+
+    do
+    {
+        cout << "Nama : ";
+        cin >> nama2;
+        cout << "Password : ";
+        cin >> password2;
+
+    } while (Customer::checkDatabase(nama2, password2) == 0);
+    
+    cout << "Berhasil login\n";
+    customerMenu();
+
+};
+
+void Customer::customerRegister() {
+    string name, email, password, customerID;
+
+    cout << "Masukkan nama: ";
+    cin >> name;
+    cout << "Masukkan email: ";
+    cin >> email;
+    cout << "Masukkan password: ";
+    cin >> password;
+    cout << "Masukkan ID pelanggan: ";
+    cin >> customerID;
+
+    // Buat objek Customer baru dan tambahkan ke vector
+    Customer newCustomer(name, email, password, customerID);
+    customers.push_back(newCustomer);
+
+    ofstream newFile("customerDatabase.txt", ofstream::app);
+    newFile << name << " "
+            << email << " " 
+            << password << " "
+            << customerID << endl;
+
+    cout << "Pelanggan berhasil didaftarkan!\n";
 }
+
+void Customer::landingPage() {
+    int i;
+    cout << "Selamat datang di Rental Jogja!\n";
+    cout << "1. Login ke akun yang sudah ada\n";
+    cout << "2. Buat akun baru\n";
+    cin >> i;
+    switch (i)
+    {
+    case 1:
+        Customer::customerLogin();
+        break;
+    
+    case 2:
+        Customer::customerRegister();
+
+    default:
+        break;
+    }
+
+}
+// int main() {
+//     Customer::customerLogin();
+//     // Customer::customerRegister();
+//     // Customer::displayCustomers();
+//     // Customer ::viewAvailableCars();
+//     return 0;
+// }

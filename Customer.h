@@ -18,11 +18,14 @@ public:
     
     Customer(string name1, string email1, string customerPassword1, string customerID1);
     Customer();
-    static int checkDatabase(string name, string password); // Update in the header file
+
     string get_name(string name);
     string get_email(string email);
     string get_customerPassword(string password);
     string get_customerID(string customerID);
+
+    static void landingPage();
+    static int checkDatabase(string name, string password); // Update in the header file
     static void customerRegister();
     static void customerLogin();
     static void customerMenu();
