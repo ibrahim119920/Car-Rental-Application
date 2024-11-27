@@ -1,4 +1,6 @@
+#include "Customer.h"
 #include "Car.h"
+#include "Booking.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -49,6 +51,7 @@ void Car::loadCarsFromFile(const string& filename) {
     }
 
     file.close(); // Menutup file
+
 }
 
 // Get all cars
@@ -67,6 +70,8 @@ void Car::displayCar() const {
 
 // Display all cars
 void Car::displayAllCars() {
+    Car::loadCarsFromFile("carList.txt");
+    cout << "List of Cars:" << endl;
     cout << left << setw(10) << "CarID"
          << setw(15) << "Model"
          << setw(15) << "Brand"
@@ -77,15 +82,26 @@ void Car::displayAllCars() {
     for (const auto& car : cars) {
         car.displayCar();
     }
-}
+    cout << "Pilih ID mobil yang ingin disewa, atau ketik 0 untuk kembali:  ";
+    int i;
+    cin >> i;
+    
+    if (i <= 0)
+    {
+        Customer::customerMenu();
+    }
+    else if (i > 5)
+    {
+        cout << "Nomor tidak valid!";
+    }
+    else
+    {
+        int ii = stoi(cars[i].get_carID());
+        // bookCar();
+    }
+    
+    
 
-int main() {
-    // Load cars data from file
-    Car::loadCarsFromFile("carList.txt");
+    
 
-    // Display all cars
-    cout << "List of Cars:" << endl;
-    Car::displayAllCars();
-
-    return 0;
 }

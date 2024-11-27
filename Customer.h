@@ -29,7 +29,7 @@ public:
     static void customerRegister();
     static void customerLogin();
     static void customerMenu();
-    static void viewAvailableCars();
+    // static void viewAvailableCars();
     static int bookCar();
     // static int extendRent();
     static void returnCar();

@@ -5,6 +5,8 @@
 #include <fstream>
 #include <conio.h>
 #include "Customer.h"
+#include "Car.h"
+#include "Booking.h"
 
 using namespace std;
 
@@ -78,38 +80,38 @@ void Customer::returnCar(){
 };
 
 
-void Customer::viewAvailableCars() {
-    ifstream inFile("carList.txt");
-    if (!inFile) {
-        cerr << "Error: Unable to open file!" << endl;
-         // Menghentikan fungsi jika file tidak dapat dibuka
-    }
+// void Customer::viewAvailableCars() {
+//     ifstream inFile("carList.txt");
+//     if (!inFile) {
+//         cerr << "Error: Unable to open file!" << endl;
+//          // Menghentikan fungsi jika file tidak dapat dibuka
+//     }
 
-    string carID1, model1, brand1;
-    bool status;
-    double rate1;
+//     string carID1, model1, brand1;
+//     bool status;
+//     double rate1;
 
-    cout << "======================================" << endl;
-    cout << "    Available Cars Information        " << endl;
-    cout << "======================================" << endl;
-    cout << "CarID\tModel\tBrand\tRate\tStatus" << endl;
-    cout << "--------------------------------------" << endl;
+//     cout << "======================================" << endl;
+//     cout << "    Available Cars Information        " << endl;
+//     cout << "======================================" << endl;
+//     cout << "CarID\tModel\tBrand\tRate\tStatus" << endl;
+//     cout << "--------------------------------------" << endl;
 
-    while (inFile >> carID1 >> model1 >> brand1 >> status >> rate1) {
-        // Tampilkan hanya jika status adalah true (1)
-        if (status) {
-            cout << carID1 << "\t" << model1 << "\t" << brand1 << "\t" 
-                 << rate1 << "\t" << (status ? "Ready" : "Not Ready") << endl;
-        }
-    }
+//     while (inFile >> carID1 >> model1 >> brand1 >> status >> rate1) {
+//         // Tampilkan hanya jika status adalah true (1)
+//         if (status) {
+//             cout << carID1 << "\t" << model1 << "\t" << brand1 << "\t" 
+//                  << rate1 << "\t" << (status ? "Ready" : "Not Ready") << endl;
+//         }
+//     }
 
-    inFile.close();
-    cout << "======================================" << endl;
-    int i;
-    cout << "Pilih mobil yang ingin disewa: ";
-    cin >> i;
+//     inFile.close();
+//     cout << "======================================" << endl;
+//     int i;
+//     cout << "Pilih mobil yang ingin disewa: ";
+//     cin >> i;
     
-}
+// }
 
 
 void Customer::customerMenu() {
@@ -123,7 +125,7 @@ void Customer::customerMenu() {
     switch (choice)
     {
     case 1:
-        Customer::viewAvailableCars();
+        Car::displayAllCars();
         break;
 
     case 2:
