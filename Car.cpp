@@ -8,9 +8,6 @@
 
 using namespace std;
 
-// Inisialisasi vector statis
-vector<Car> Car::cars;
-
 // Default constructor
 Car::Car() : carID(""), model(""), brand(""), availability(false), rate(0) {}
 

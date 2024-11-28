@@ -164,6 +164,9 @@ void Customer::saveCustomersToFile() {
 
 void Customer::landingPage() {
     loadCustomersFromFile();
+
+    cout << customers[2].get_name();
+
     int i;
     cout << "Selamat datang di Rental Jogja!\n";
     cout << "1. Login ke akun yang sudah ada\n";
