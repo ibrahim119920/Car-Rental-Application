@@ -69,7 +69,7 @@ void Car::displayCar() const {
 }
 
 // Display all cars
-void Car::displayAllCars() {
+void Car::displayAllCars(int custID) {
     Car::loadCarsFromFile("carList.txt");
     cout << "List of Cars:" << endl;
     cout << left << setw(10) << "CarID"
@@ -88,7 +88,7 @@ void Car::displayAllCars() {
     
     if (i <= 0)
     {
-        Customer::customerMenu();
+        Customer::customers[custID].customerMenu(custID);
     }
     else if (i > 5)
     {

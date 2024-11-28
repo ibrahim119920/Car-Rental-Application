@@ -8,29 +8,29 @@ using namespace std;
 class Customer
 {
 private:
-    static vector<Customer> customers; // Array dinamis untuk menyimpan pelanggan
-    string customerID;
+    int customerID;
     string name;
     string email;
     string customerPassword;
 
 public:
-    
-    Customer(string name1, string email1, string customerPassword1, string customerID1);
+    Customer(string name1, string email1, string customerPassword1, int customerID1);
     Customer();
 
-    string get_name(string name);
-    string get_email(string email);
-    string get_customerPassword(string password);
-    string get_customerID(string customerID);
+    static vector<Customer> customers; // Array dinamis untuk menyimpan pelanggan
 
+    string get_name() const;
+    string get_email() const;
+    string get_customerPassword() const;
+    int get_customerID() const;
+
+    static void loadCustomersFromFile();
+    static void saveCustomersToFile();
     static void landingPage();
-    static int checkDatabase(string name, string password); // Update in the header file
+    static int checkDatabase(string name, string password);
     static void customerRegister();
     static void customerLogin();
-    static void customerMenu();
-    // static void viewAvailableCars();
+    void customerMenu(int idCust);
     static int bookCar();
-    // static int extendRent();
     static void returnCar();
 };

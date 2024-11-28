@@ -5,3 +5,8 @@
 
 using namespace std;
 
+extern vector<Car> Car::cars;
+
+void Booking::bookCar(string get_carID()) {
+    // cars[].get_carID();
+}

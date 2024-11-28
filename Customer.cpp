@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <cstring>
 #include <vector>
 #include <fstream>
 #include <conio.h>
@@ -13,108 +12,56 @@ using namespace std;
 // Inisialisasi vector pelanggan
 vector<Customer> Customer::customers;
 
-Customer::Customer() {
+Customer::Customer() {}
 
+Customer::Customer(string name1, string email1, string customerPassword1, int customerID1)
+    : name(name1), email(email1), customerPassword(customerPassword1), customerID(customerID1) {}
+
+string Customer::get_name() const {
+    return name;
 }
 
-Customer::Customer(string name1, string email1, string customerPassword1, string customerID1) 
-    : name(name1), email(email1), customerPassword(customerPassword1), customerID(customerID1) {}
-string Customer :: get_name(string name){
-    return name ;
-};
-string Customer :: get_email(string email){
-    return email ;
-};
-string Customer :: get_customerPassword(string password){
-    return password ;
-};
-string Customer :: get_customerID(string CustomerID){
+string Customer::get_email() const {
+    return email;
+}
+
+string Customer::get_customerPassword() const {
+    return customerPassword;
+}
+
+int Customer::get_customerID() const {
     return customerID;
-};
-
-
-
+}
 
 int Customer::checkDatabase(string name, string password) {
     ifstream inFile("customerDatabase.txt");
     if (!inFile) {
         cerr << "Error: Unable to open file!" << endl;
-        return 0; // Mengembalikan 0 jika file tidak dapat dibuka
+        return 0;
     }
 
-    string name1, email1, password1, customerID1;
+    string name1, email1, password1;
+    int customerID1;
     while (inFile >> name1 >> email1 >> password1 >> customerID1) {
         if (name == name1 && password == password1) {
             inFile.close();
-            return 1; // Berhasil menemukan nama dan kata sandi yang cocok
+            return customerID1;
         }
     }
 
     inFile.close();
-    return 0; // Nama dan kata sandi tidak ditemukan
+    return 0;
 }
 
-// void Customer::displayCustomers() {
-//     cout << "\nDaftar Pelanggan Terdaftar:\n";
-//     if (customers.empty()) {
-//         cout << "Belum ada pelanggan yang terdaftar.\n";
-//         return;
-//     }
-
-//     for (const auto &customer : customers) {
-//         cout << "Nama: " << customer.name
-//              << ", Email: " << customer.email
-//              << ", ID: " << customer.customerID << "\n";
-//     }
-// }
-
-void Customer::returnCar(){
+void Customer::returnCar() {
     int n;
 
-    if (n == 1)
-    {
+    if (n == 1) {
         cout << "Anda tidak sedang menyewa mobil!";
-
     }
-    
-};
+}
 
-
-// void Customer::viewAvailableCars() {
-//     ifstream inFile("carList.txt");
-//     if (!inFile) {
-//         cerr << "Error: Unable to open file!" << endl;
-//          // Menghentikan fungsi jika file tidak dapat dibuka
-//     }
-
-//     string carID1, model1, brand1;
-//     bool status;
-//     double rate1;
-
-//     cout << "======================================" << endl;
-//     cout << "    Available Cars Information        " << endl;
-//     cout << "======================================" << endl;
-//     cout << "CarID\tModel\tBrand\tRate\tStatus" << endl;
-//     cout << "--------------------------------------" << endl;
-
-//     while (inFile >> carID1 >> model1 >> brand1 >> status >> rate1) {
-//         // Tampilkan hanya jika status adalah true (1)
-//         if (status) {
-//             cout << carID1 << "\t" << model1 << "\t" << brand1 << "\t" 
-//                  << rate1 << "\t" << (status ? "Ready" : "Not Ready") << endl;
-//         }
-//     }
-
-//     inFile.close();
-//     cout << "======================================" << endl;
-//     int i;
-//     cout << "Pilih mobil yang ingin disewa: ";
-//     cin >> i;
-    
-// }
-
-
-void Customer::customerMenu() {
+void Customer::customerMenu(int custID) {
     int choice;
     cout << "Pilih menu yang ingin diakses: \n";
     cout << "1. Lihat mobil yang tersedia.\n";
@@ -122,45 +69,59 @@ void Customer::customerMenu() {
     cout << "3. Perpanjang mobil.\n";
     cout << "Pilihan: ";
     cin >> choice;
-    switch (choice)
-    {
+    switch (choice) {
     case 1:
-        Car::displayAllCars();
+        Car::displayAllCars(custID);
         break;
-
     case 2:
         Customer::returnCar();
         break;
-    
     case 3:
         // Customer::extendRent();
-    
+        break;
     default:
         break;
     }
 }
 
-
 void Customer::customerLogin() {
     string nama2;
     string password2;
 
-    do
-    {
+    do {
         cout << "Nama : ";
         cin >> nama2;
         cout << "Password : ";
         cin >> password2;
 
     } while (Customer::checkDatabase(nama2, password2) == 0);
-    
-    cout << "Berhasil login\n";
-    customerMenu();
 
-};
+    cout << "Berhasil login\n";
+    int n = checkDatabase(nama2, password2);
+    customers[n].customerMenu(n);
+}
+
+void Customer::loadCustomersFromFile() {
+    ifstream inFile("customerDatabase.txt");
+    if (!inFile) {
+        cerr << "Error: Unable to open file!" << endl;
+        return;
+    }
+
+    string name1, email1, password1;
+    int customerID1;
+    while (inFile >> name1 >> email1 >> password1 >> customerID1) {
+        Customer newCustomer(name1, email1, password1, customerID1);
+        customers.push_back(newCustomer);
+    }
+
+    inFile.close();
+    cout << "Data pelanggan berhasil dimuat dari file.\n";
+}
 
 void Customer::customerRegister() {
-    string name, email, password, customerID;
+    string name, email, password;
+    int customerID;
 
     cout << "Masukkan nama: ";
     cin >> name;
@@ -168,46 +129,54 @@ void Customer::customerRegister() {
     cin >> email;
     cout << "Masukkan password: ";
     cin >> password;
-    cout << "Masukkan ID pelanggan: ";
+    cout << "Masukkan ID pelanggan (angka): ";
     cin >> customerID;
 
-    // Buat objek Customer baru dan tambahkan ke vector
     Customer newCustomer(name, email, password, customerID);
     customers.push_back(newCustomer);
 
     ofstream newFile("customerDatabase.txt", ofstream::app);
     newFile << name << " "
-            << email << " " 
+            << email << " "
             << password << " "
             << customerID << endl;
 
     cout << "Pelanggan berhasil didaftarkan!\n";
 }
 
+void Customer::saveCustomersToFile() {
+    ofstream outFile("customerDatabase.txt");
+    if (!outFile) {
+        cerr << "Error: Unable to open file for writing!" << endl;
+        return;
+    }
+
+    for (const Customer &c : customers) {
+        outFile << c.name << " "
+                << c.email << " "
+                << c.customerPassword << " "
+                << c.customerID << endl;
+    }
+
+    outFile.close();
+    cout << "Data pelanggan berhasil disimpan ke file.\n";
+}
+
 void Customer::landingPage() {
+    loadCustomersFromFile();
     int i;
     cout << "Selamat datang di Rental Jogja!\n";
     cout << "1. Login ke akun yang sudah ada\n";
     cout << "2. Buat akun baru\n";
     cin >> i;
-    switch (i)
-    {
+    switch (i) {
     case 1:
         Customer::customerLogin();
         break;
-    
     case 2:
         Customer::customerRegister();
-
+        break;
     default:
         break;
     }
-
 }
-// int main() {
-//     Customer::customerLogin();
-//     // Customer::customerRegister();
-//     // Customer::displayCustomers();
-//     // Customer ::viewAvailableCars();
-//     return 0;
-// }
