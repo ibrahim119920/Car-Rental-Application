@@ -14,6 +14,7 @@ private:
 public:
     Booking(/* args */);
     ~Booking();
+    
     void bookCar(string get_carID());
     void payCar(); 
 };

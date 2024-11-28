@@ -31,6 +31,5 @@ public:
     static void customerRegister();
     static void customerLogin();
     void customerMenu(int idCust);
-    static int bookCar();
     static void returnCar();
 };

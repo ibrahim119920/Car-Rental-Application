@@ -9,11 +9,11 @@
 using namespace std;
 
 // Default constructor
-Car::Car() : carID(""), model(""), brand(""), availability(false), rate(0) {}
+Car::Car() : carID(""), model(""), brand(""), availability(false), price(0) {}
 
 // Parameterized constructor
 Car::Car(string carID, string model, string brand, bool availability, int rate)
-    : carID(carID), model(model), brand(brand), availability(availability), rate(rate) {}
+    : carID(carID), model(model), brand(brand), availability(availability), price(rate) {}
 
 // Destructor
 Car::~Car() {}
@@ -22,7 +22,7 @@ Car::~Car() {}
 string Car::get_carID() const { return carID; }
 string Car::get_model() const { return model; }
 string Car::get_brand() const { return brand; }
-int Car::get_rate() const { return rate; }
+int Car::get_price() const { return price; }
 bool Car::get_availability() const { return availability; }
 
 // Load cars from file
@@ -62,7 +62,7 @@ void Car::displayCar() const {
          << setw(15) << model
          << setw(15) << brand
          << setw(15) << (availability ? "Available" : "Not Available")
-         << "Rp " << rate << endl;
+         << "Rp " << price << endl;
 }
 
 // Display all cars

@@ -11,7 +11,7 @@ private:
     string model;            // Model mobil
     string brand;            // Merek mobil
     bool availability;       // Ketersediaan mobil
-    int rate;                // Tarif sewa per hari
+    int price;                // Tarif sewa per hari
 
 public:
     // Default constructor
@@ -30,7 +30,7 @@ public:
     string get_carID() const;
     string get_model() const;
     string get_brand() const;
-    int get_rate() const;
+    int get_price() const;
     bool get_availability() const;
 
     // Static methods
