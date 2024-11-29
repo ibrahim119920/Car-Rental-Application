@@ -33,7 +33,7 @@ public:
     bool get_availability() const;
 
     // Setter methods
-    bool set_availability();
+    void set_availability();
 
     // Static methods
     static void loadCarsFromFile(const string& filename); // Membaca data dari file ke dalam array dinamis

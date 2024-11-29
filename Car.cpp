@@ -26,7 +26,7 @@ int Car::get_price() const { return price; }
 bool Car::get_availability() const { return availability; }
 
 // Setter method
-bool Car::set_availability() {
+void Car::set_availability() {
     if (availability == 0)
     {
         availability = 1;

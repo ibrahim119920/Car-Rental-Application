@@ -14,8 +14,8 @@ vector<Customer> Customer::customers;
 
 Customer::Customer() {}
 
-Customer::Customer(string name1, string email1, string customerPassword1, int customerID1)
-    : name(name1), email(email1), customerPassword(customerPassword1), customerID(customerID1) {}
+Customer::Customer(string name1, string email1, string customerPassword1, int customerID1, int isRenting1)
+    : name(name1), email(email1), customerPassword(customerPassword1), customerID(customerID1), isRenting(isRenting1) {}
 
 string Customer::get_name() const {
     return name;
@@ -33,6 +33,14 @@ int Customer::get_customerID() const {
     return customerID;
 }
 
+int Customer::get_isRenting() const {
+    return isRenting;
+}
+
+void Customer::set_isRenting(int renting) {
+    isRenting = renting;
+}
+
 int Customer::checkDatabase(string name, string password) {
     ifstream inFile("customerDatabase.txt");
     if (!inFile) {
@@ -41,8 +49,8 @@ int Customer::checkDatabase(string name, string password) {
     }
 
     string name1, email1, password1;
-    int customerID1;
-    while (inFile >> name1 >> email1 >> password1 >> customerID1) {
+    int customerID1, isRenting1;
+    while (inFile >> name1 >> email1 >> password1 >> customerID1 >> isRenting1) {
         if (name == name1 && password == password1) {
             inFile.close();
             return customerID1;
@@ -54,11 +62,16 @@ int Customer::checkDatabase(string name, string password) {
 }
 
 void Customer::returnCar() {
-    int n;
-
-    if (n == 1) {
-        cout << "Anda tidak sedang menyewa mobil!";
+    int customerIndex = 0; // Temukan indeks pelanggan berdasarkan logika Anda
+    if (customers[customerIndex].get_isRenting() == 0) {
+        cout << "Anda tidak sedang menyewa mobil!\n";
+        return;
     }
+
+    // Logika pengembalian mobil
+    customers[customerIndex].set_isRenting(0);
+    cout << "Mobil berhasil dikembalikan!\n";
+    saveCustomersToFile(); // Perbarui file
 }
 
 void Customer::customerMenu(int custID) {
@@ -77,7 +90,7 @@ void Customer::customerMenu(int custID) {
         Customer::returnCar();
         break;
     case 3:
-        // Customer::extendRent();
+        // Logika perpanjangan penyewaan
         break;
     default:
         break;
@@ -109,9 +122,9 @@ void Customer::loadCustomersFromFile() {
     }
 
     string name1, email1, password1;
-    int customerID1;
-    while (inFile >> name1 >> email1 >> password1 >> customerID1) {
-        Customer newCustomer(name1, email1, password1, customerID1);
+    int customerID1, isRenting1;
+    while (inFile >> name1 >> email1 >> password1 >> customerID1 >> isRenting1) {
+        Customer newCustomer(name1, email1, password1, customerID1, isRenting1);
         customers.push_back(newCustomer);
     }
 
@@ -132,14 +145,15 @@ void Customer::customerRegister() {
     cout << "Masukkan ID pelanggan (angka): ";
     cin >> customerID;
 
-    Customer newCustomer(name, email, password, customerID);
+    Customer newCustomer(name, email, password, customerID, 0); // Default isRenting = 0
     customers.push_back(newCustomer);
 
     ofstream newFile("customerDatabase.txt", ofstream::app);
     newFile << name << " "
             << email << " "
             << password << " "
-            << customerID << endl;
+            << customerID << " "
+            << 0 << endl;
 
     cout << "Pelanggan berhasil didaftarkan!\n";
 }
@@ -155,7 +169,8 @@ void Customer::saveCustomersToFile() {
         outFile << c.name << " "
                 << c.email << " "
                 << c.customerPassword << " "
-                << c.customerID << endl;
+                << c.customerID << " "
+                << c.isRenting << endl;
     }
 
     outFile.close();
