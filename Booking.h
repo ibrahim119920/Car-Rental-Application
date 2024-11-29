@@ -15,7 +15,8 @@ public:
     Booking(/* args */);
     ~Booking();
     
-    void bookCar(string get_carID());
-    void payCar(); 
+    static void bookCar(int bookedCarID, int custID);
+    static void calculateCost(int bookedCarID, int custID);
+    static void payCar(int bookedCarID, int custID); 
 };
 

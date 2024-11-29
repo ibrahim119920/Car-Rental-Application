@@ -93,8 +93,8 @@ void Car::displayAllCars(int custID) {
     }
     else
     {
-        int ii = stoi(cars[i].get_carID());
-        // bookCar();
+        int bookedCarID = stoi(cars[i].get_carID());
+        Booking::bookCar(bookedCarID, custID);
     }
     
     
