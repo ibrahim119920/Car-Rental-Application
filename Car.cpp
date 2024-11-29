@@ -9,21 +9,30 @@
 using namespace std;
 
 // Default constructor
-Car::Car() : carID(""), model(""), brand(""), availability(false), price(0) {}
+Car::Car() : carID(0), model(""), brand(""), availability(false), price(0) {}
 
 // Parameterized constructor
-Car::Car(string carID, string model, string brand, bool availability, int rate)
+Car::Car(int carID, string model, string brand, bool availability, int rate)
     : carID(carID), model(model), brand(brand), availability(availability), price(rate) {}
 
 // Destructor
 Car::~Car() {}
 
 // Getter methods
-string Car::get_carID() const { return carID; }
+int Car::get_carID() const { return carID; }
 string Car::get_model() const { return model; }
 string Car::get_brand() const { return brand; }
 int Car::get_price() const { return price; }
 bool Car::get_availability() const { return availability; }
+
+// Setter method
+bool Car::set_availability() {
+    if (availability == 0)
+    {
+        availability = 1;
+    }
+    else availability = 0;
+}
 
 // Load cars from file
 void Car::loadCarsFromFile(const string& filename) {
@@ -36,9 +45,9 @@ void Car::loadCarsFromFile(const string& filename) {
     string line;
     while (getline(file, line)) {
         stringstream ss(line); // Membaca setiap baris file
-        string carID, model, brand;
+        int carID, rate;
+        string model, brand;
         bool availability;
-        int rate;
 
         // Parsing data dari baris
         ss >> carID >> model >> brand >> availability >> rate;
@@ -48,7 +57,6 @@ void Car::loadCarsFromFile(const string& filename) {
     }
 
     file.close(); // Menutup file
-
 }
 
 // Get all cars
@@ -67,7 +75,6 @@ void Car::displayCar() const {
 
 // Display all cars
 void Car::displayAllCars(int custID) {
-    Car::loadCarsFromFile("carList.txt");
     cout << "List of Cars:" << endl;
     cout << left << setw(10) << "CarID"
          << setw(15) << "Model"
@@ -79,26 +86,15 @@ void Car::displayAllCars(int custID) {
     for (const auto& car : cars) {
         car.displayCar();
     }
-    cout << "Pilih ID mobil yang ingin disewa, atau ketik 0 untuk kembali:  ";
-    int i;
-    cin >> i;
-    
-    if (i <= 0)
-    {
+
+    cout << "Pilih ID mobil yang ingin disewa, atau ketik 0 untuk kembali: ";
+    int bookedCarID;
+    cin >> bookedCarID;
+
+    if (bookedCarID <= 0) {
         Customer::customers[custID].customerMenu(custID);
-    }
-    else if (i > 5)
-    {
-        cout << "Nomor tidak valid!";
-    }
-    else
-    {
-        int bookedCarID = stoi(cars[i].get_carID());
+    } else {
+    
         Booking::bookCar(bookedCarID, custID);
     }
-    
-    
-
-    
-
 }

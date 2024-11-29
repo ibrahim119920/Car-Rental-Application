@@ -164,6 +164,7 @@ void Customer::saveCustomersToFile() {
 
 void Customer::landingPage() {
     loadCustomersFromFile();
+    Car::loadCarsFromFile("carList.txt");
 
     cout << customers[2].get_name();
 
