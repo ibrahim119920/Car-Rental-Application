@@ -30,8 +30,23 @@ void Car::set_availability() {
     if (availability == 0)
     {
         availability = 1;
+    
     }
     else availability = 0;
+     ofstream outFile("carList.txt");
+     if (!outFile) {
+        cerr << "Error: Unable to open file for writing!" << endl;
+        return;
+
+    for (const Car &c : cars) {
+        outFile << c.carID << " "
+                << c.model << " "
+                << c.brand << " "
+                << c.availability << " "
+                << c.price << endl;
+    }
+         outFile.close();
+    }
 }
 
 // Load cars from file

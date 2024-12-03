@@ -79,4 +79,8 @@ void Booking::payCar(int bookedCarID, int custID, int totalPrice) {
     cin>>doit;
 
     cout<<"Pembayaran Telah Berhasil"<<endl;
+
+    cars[bookedCarID].set_availability();
+
+
 }
