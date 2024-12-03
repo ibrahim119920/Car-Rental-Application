@@ -1,4 +1,4 @@
-namasatu emailsatu pwsatu 1 -1
+namasatu emailsatu pwsatu 1 0
 namadua emaildua pwdua 2 -1
 namatiga emailtiga pwtiga 3 -1
 namaempat emailempat pwempat 4 -1

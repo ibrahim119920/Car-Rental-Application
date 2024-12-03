@@ -1,5 +1,5 @@
 1 Jazz Honda 0 1000
-2 Innova Toyota 1 2000
+2 Innova Toyota 0 2000
 3 Serena Nissan 0 2000
 4 Alphard Toyota 1 4000
 5 Ertiga Suzuki 0 1500
