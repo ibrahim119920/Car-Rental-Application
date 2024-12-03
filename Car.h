@@ -39,6 +39,7 @@ public:
     static void loadCarsFromFile(const string& filename); // Membaca data dari file ke dalam array dinamis
     static const vector<Car>& getAllCars();              // Mendapatkan semua mobil dalam array dinamis
     static void displayAllCars(int custID);              // Menampilkan semua mobil ke terminal
+    static void saveCarsToFile();
 
     // Non-static method
     void displayCar() const;                             // Menampilkan atribut mobil ini

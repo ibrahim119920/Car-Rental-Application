@@ -33,21 +33,29 @@ void Car::set_availability() {
     
     }
     else availability = 0;
-     ofstream outFile("carList.txt");
-     if (!outFile) {
-        cerr << "Error: Unable to open file for writing!" << endl;
-        return;
+    Car::saveCarsToFile();
+    
+};
 
-    for (const Car &c : cars) {
-        outFile << c.carID << " "
-                << c.model << " "
-                << c.brand << " "
-                << c.availability << " "
-                << c.price << endl;
+void Car::saveCarsToFile() {
+    ofstream file("carList.txt"); // Membuka file untuk menulis
+    if (!file.is_open()) {
+        cerr << "Error: Unable to open file " << endl;
+        return;
     }
-         outFile.close();
+
+    for (const auto& cars : cars) {
+        file << cars.carID << " " 
+             << cars.model << " " 
+             << cars.brand << " " 
+             << cars.availability << " " 
+             << cars.price << endl; // Pastikan konsisten dengan properti `rate`
     }
+
+    file.close(); // Menutup file
 }
+
+
 
 // Load cars from file
 void Car::loadCarsFromFile(const string& filename) {
@@ -60,15 +68,15 @@ void Car::loadCarsFromFile(const string& filename) {
     string line;
     while (getline(file, line)) {
         stringstream ss(line); // Membaca setiap baris file
-        int carID, rate;
+        int carID, price;
         string model, brand;
         bool availability;
 
         // Parsing data dari baris
-        ss >> carID >> model >> brand >> availability >> rate;
+        ss >> carID >> model >> brand >> availability >> price;
 
         // Menambahkan data ke vector cars
-        cars.push_back(Car(carID, model, brand, availability, rate));
+        cars.push_back(Car(carID, model, brand, availability, price));
     }
 
     file.close(); // Menutup file

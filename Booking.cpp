@@ -60,7 +60,8 @@ void Booking::payCar(int bookedCarID, int custID, int totalPrice) {
     switch (choice)
     {
     case 1:
-        pay = "Lakukan proses pembayaran";
+        // pay = "Lakukan proses pembayaran";
+        cars[bookedCarID].set_availability();
         break;
 
     case 2:
@@ -80,7 +81,7 @@ void Booking::payCar(int bookedCarID, int custID, int totalPrice) {
 
     cout<<"Pembayaran Telah Berhasil"<<endl;
 
-    cars[bookedCarID].set_availability();
+    
 
 
 }
