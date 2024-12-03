@@ -22,7 +22,7 @@ void Booking::bookCar(int bookedCarID, int custID) {
     switch (choice)
     {
     case 1:
-        // payCar(bookedCarID, custID, price);
+        Booking :: payCar(bookedCarID, custID , price);
         break;
 
     case 2:
@@ -60,8 +60,15 @@ void Booking::payCar(int bookedCarID, int custID, int totalPrice) {
     switch (choice)
     {
     case 1:
+        cout<<"Pilih metode pembayaran : "<<endl;
+    cout<<"1. Dana\n2. BRI\n3. BNI\n4. Mandiri\n5. Gopay"<<endl;
+    cout<<"Pilihan : ";
+    cin>>doit;
+
+    cout<<"Pembayaran Telah Berhasil"<<endl;
+
         // pay = "Lakukan proses pembayaran";
-        cars[bookedCarID].set_availability();
+        cars[bookedCarID-1].set_availability();
         break;
 
     case 2:
@@ -74,12 +81,8 @@ void Booking::payCar(int bookedCarID, int custID, int totalPrice) {
         break;
     }
 
-    cout<<"Pilih metode pembayaran : "<<endl;
-    cout<<"1. Dana\n2. BRI\n3. BNI\n4. Mandiri\n5. Gopay"<<endl;
-    cout<<"Pilihan : ";
-    cin>>doit;
-
-    cout<<"Pembayaran Telah Berhasil"<<endl;
+    
+   
 
     
 
