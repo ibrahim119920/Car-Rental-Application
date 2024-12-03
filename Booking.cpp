@@ -51,8 +51,32 @@ int Booking::calculateCost(int bookedCarID, int custID) {
 
 void Booking::payCar(int bookedCarID, int custID, int totalPrice) {
     int choice;
+    string pay, doit;
     cout << "Anda akan membayar sebesar Rp" << totalPrice << ".";
     cout << "1. Bayar, 2. Kembali ke daftar mobil\n";
     cout << "Pilihan : ";
     cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        pay = "Lakukan proses pembayaran";
+        break;
+
+    case 2:
+        Car::displayAllCars(custID);      
+        break;
+        
+    default:
+        cout << "Pilihan tidak valid";
+        Booking::payCar(bookedCarID, custID, totalPrice);
+        break;
+    }
+
+    cout<<"Pilih metode pembayaran : "<<endl;
+    cout<<"1. Dana\n2. BRI\n3. BNI\n4. Mandiri\n5. Gopay"<<endl;
+    cout<<"Pilihan : ";
+    cin>>doit;
+
+    cout<<"Pembayaran Telah Berhasil"<<endl;
 }
