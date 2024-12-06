@@ -80,20 +80,30 @@ void Customer::returnCar(int custID) {
 
     // Logika pengembalian mobil
     Customer::customers[custID].set_isRenting(-1);
-    cout << "Mobil berhasil dikembalikan!\n";
+    
     saveCustomersToFile(); // Perbarui file
+    cout << "Mobil berhasil dikembalikan.";
 
 };
 
 void Customer :: extendCar(int custID){
+    int BookedCarID = customers[custID].get_isRenting();
     int choice;
+    int days, price;
+       if (BookedCarID == -1)
+    {
+        cout << " Anda belum sewa mobil.\n";
+        Customer :: customers[custID].customerMenu(custID);
+    }else
     cout << "Apakah anda ingin memperpanjang Sewa? "<< endl;
     cout << "Ketik 1 untuk lanjut";
     cin >> choice ;
     if (choice == 1 )
     {
-          int BookedCarID = customers[custID].get_isRenting();
-   int price = Booking :: calculateCost(BookedCarID,custID);
+    cout << "Berapa lama anda ingin memperpanjang sewa? Masukkan jumlah hari : ";
+    cin >> days;
+    
+    price =Car :: cars[BookedCarID - 1].get_price() * days;
     Booking :: payCar(BookedCarID, custID , price );
         
     }else customerMenu(custID);
@@ -129,6 +139,7 @@ void Customer::customerMenu(int custID) {
         break;
     case 4 :
         Customer :: logOut();
+        break;
     default:
         break;
     }
@@ -213,7 +224,7 @@ void Customer::saveCustomersToFile() {
     }
 
     outFile.close();
-    cout << "Data pelanggan berhasil disimpan ke file.\n";
+  
 }
 
 void Customer::landingPage() {
@@ -238,7 +249,4 @@ void Customer::landingPage() {
     }
 }
 
- static void returnCar(int bookedcarID, string custID){
-    
-    
- };
+

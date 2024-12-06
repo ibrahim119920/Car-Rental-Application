@@ -117,7 +117,7 @@ void Car::displayAllCars(int custID) {
 
     if (cars[bookedCarID-1].get_availability() == 0)
     {
-        cout << "Maaf mobil tidak tersedia";
+        cout << "Maaf mobil tidak tersedia\n";
         displayAllCars(custID);
     };
 
