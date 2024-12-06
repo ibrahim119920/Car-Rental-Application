@@ -101,12 +101,20 @@ void Customer :: extendCar(int custID){
   
 
 }
+
+void Customer :: logOut(){
+    Customer :: landingPage();
+}
+
+
+
 void Customer::customerMenu(int custID) {
     int choice;
     cout << "Pilih menu yang ingin diakses: \n";
     cout << "1. Lihat mobil yang tersedia.\n";
     cout << "2. Kembalikan mobil\n";
     cout << "3. Perpanjang mobil.\n";
+    cout << "4. Log Out\n";
     cout << "Pilihan: ";
     cin >> choice;
     switch (choice) {
@@ -114,11 +122,13 @@ void Customer::customerMenu(int custID) {
         Car::displayAllCars(custID);
         break;
     case 2:
-        // Customer::returnCar(   custID);
+        Customer::returnCar(custID);
         break;
     case 3:
-        // Logika perpanjangan penyewaan
+        Customer ::extendCar(custID);
         break;
+    case 4 :
+        Customer :: logOut();
     default:
         break;
     }
@@ -156,7 +166,7 @@ void Customer::loadCustomersFromFile() {
     }
 
     inFile.close();
-    cout << "Data pelanggan berhasil dimuat dari file.\n";
+
 }
 
 void Customer::customerRegister() {
@@ -172,7 +182,9 @@ void Customer::customerRegister() {
     cout << "Masukkan ID pelanggan (angka): ";
     cin >> customerID;
 
-    Customer newCustomer(name, email, password, customerID, 0); // Default isRenting = 0
+    
+
+    Customer newCustomer(name, email, password, customerID, -1); // Default isRenting = 0
     customers.push_back(newCustomer);
 
     ofstream newFile("customerDatabase.txt", ofstream::app);
@@ -180,7 +192,7 @@ void Customer::customerRegister() {
             << email << " "
             << password << " "
             << customerID << " "
-            << 0 << endl;
+            << -1 << endl;
 
     cout << "Pelanggan berhasil didaftarkan!\n";
 }
@@ -208,7 +220,6 @@ void Customer::landingPage() {
     loadCustomersFromFile();
     Car::loadCarsFromFile("carList.txt");
 
-    cout << customers[2].get_name();
 
     int i;
     cout << "Selamat datang di Rental Jogja!\n";
