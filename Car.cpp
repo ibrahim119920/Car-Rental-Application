@@ -122,7 +122,7 @@ void Car::displayAllCars(int custID) {
     };
 
     
-    if (bookedCarID < 0 || bookedCarID >5)  {
+    if (bookedCarID < 0 || bookedCarID >6)  {
         cout << "Tidak Valid."<< endl;
         displayAllCars(custID);
     } else if(bookedCarID == 0){

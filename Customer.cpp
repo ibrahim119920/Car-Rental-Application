@@ -66,23 +66,33 @@ int Customer::checkDatabase(string name, string password) {
 }
 
 void Customer::returnCar(int custID) {
-    
-    
-    if (Customer ::customers[custID].get_isRenting() == -1) {
+    int bookedCarID =customers[custID-1].get_isRenting();
+    int choice;
+    if (Customer ::customers[custID-1].get_isRenting() == -1) {
         cout << "Anda tidak sedang menyewa mobil!\n";
         Customer::customers[custID].customerMenu(custID);;
-    }
-    int bookedCarID =customers[custID].get_isRenting();
-     cout << "Apakah anda ingin mengembalikan mobil?" << Car :: cars[bookedCarID-1].get_brand()  << " " << Car ::cars[bookedCarID-1].get_model()  ;
-
-    Car ::cars[bookedCarID-1].set_availability();
+    }else
+     cout << "Apakah anda ingin mengembalikan mobil?\n" << Car :: cars[bookedCarID-1].get_brand()  << " " << Car ::cars[bookedCarID-1].get_model()  ;
+     cout << "Ketik 1 jika Iya\n" << "Ketik 0 untuk kembali ke Menu.\nn";
+     cin >> choice;
+     if (choice == 1)
+     {
+          Car ::cars[bookedCarID-1].set_availability();
 
 
     // Logika pengembalian mobil
-    Customer::customers[custID].set_isRenting(-1);
-    
-    saveCustomersToFile(); // Perbarui file
-    cout << "Mobil berhasil dikembalikan.";
+     Customer::customers[custID-1].set_isRenting(-1);
+     Car :: cars[custID].set_availability();
+     saveCustomersToFile(); // Perbarui file
+     cout << "Mobil berhasil dikembalikan.\n";
+     Customer :: customers[custID].customerMenu(custID);
+     }else if(choice == 0){
+        Customer ::customers[custID].customerMenu(custID);
+     }else
+     cout << "Error";
+      returnCar(custID);
+     
+   
 
 };
 

@@ -52,8 +52,8 @@ int Booking::calculateCost(int bookedCarID, int custID) {
 void Booking::payCar(int bookedCarID, int custID, int totalPrice) {
     int choice;
     string pay, doit;
-    cout << "Anda akan membayar sebesar Rp" << totalPrice << ".";
-    cout << "1. Bayar, 2. Kembali ke daftar mobil\n";
+    cout << "Anda akan membayar sebesar Rp" << totalPrice << ".\n";
+    cout << "1. Bayar\n" << "2. Kembali ke daftar mobil\n";
     cout << "Pilihan : ";
     cin >> choice;
 
@@ -69,7 +69,7 @@ void Booking::payCar(int bookedCarID, int custID, int totalPrice) {
 
         // pay = "Lakukan proses pembayaran";
         cars[bookedCarID-1].set_availability();
-        Customer :: customers[custID].set_isRenting(bookedCarID);
+        Customer :: customers[custID-1].set_isRenting(bookedCarID);
         Customer :: saveCustomersToFile();
         Customer :: customers[custID].customerMenu(custID);
         
