@@ -34,5 +34,5 @@ public:
     static void customerRegister();
     static void customerLogin();
     void customerMenu(int idCust);
-    static void returnCar(int bookedcarID, string custID);
+    static void returnCar(string custID);
 };
