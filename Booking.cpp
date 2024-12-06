@@ -69,7 +69,10 @@ void Booking::payCar(int bookedCarID, int custID, int totalPrice) {
 
         // pay = "Lakukan proses pembayaran";
         cars[bookedCarID-1].set_availability();
+        Customer :: customers[custID].set_isRenting(bookedCarID);
+        Customer :: saveCustomersToFile();
         Customer :: customers[custID].customerMenu(custID);
+        
         break;
 
     case 2:

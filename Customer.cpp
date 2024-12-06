@@ -39,6 +39,10 @@ int Customer::get_isRenting() const {
 
 void Customer::set_isRenting(int renting) {
     isRenting = renting;
+
+    
+
+
 }
 
 int Customer::checkDatabase(string name, string password) {
@@ -62,11 +66,12 @@ int Customer::checkDatabase(string name, string password) {
 }
 
 void Customer::returnCar(int bookedcarID, string custID) {
-    int customerIndex = 0; // Temukan indeks pelanggan berdasarkan logika Anda
-    if (customers[customerIndex].get_isRenting() == 0) {
-        cout << "Anda tidak sedang menyewa mobil!\n";
-        return;
-    }
+    
+     // Temukan indeks pelanggan berdasarkan logika Anda
+    // if (customers[custID].get_isRenting() == 0) {
+    //     cout << "Anda tidak sedang menyewa mobil!\n";
+    //     return;
+    // }
     
      cout << "Apakah anda ingin mengembalikan mobil?" << Car :: cars[bookedcarID-1].get_brand()  << " " << Car ::cars[bookedcarID-1].get_model()  ;
 
@@ -74,9 +79,9 @@ void Customer::returnCar(int bookedcarID, string custID) {
 
 
     // Logika pengembalian mobil
-    customers[customerIndex].set_isRenting(0);
-    cout << "Mobil berhasil dikembalikan!\n";
-    saveCustomersToFile(); // Perbarui file
+    // customers[custID].set_isRenting(0);
+    // cout << "Mobil berhasil dikembalikan!\n";
+    // saveCustomersToFile(); // Perbarui file
 
 }
 
@@ -93,7 +98,7 @@ void Customer::customerMenu(int custID) {
         Car::displayAllCars(custID);
         break;
     case 2:
-        Customer::returnCar( ,  custID);
+        // Customer::returnCar( ,  custID);
         break;
     case 3:
         // Logika perpanjangan penyewaan
