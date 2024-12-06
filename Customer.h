@@ -35,4 +35,5 @@ public:
     static void customerLogin();
     void customerMenu(int idCust);
     static void returnCar(int custID);
+    void extendCar(int custID);
 };

@@ -83,8 +83,24 @@ void Customer::returnCar(int custID) {
     cout << "Mobil berhasil dikembalikan!\n";
     saveCustomersToFile(); // Perbarui file
 
-}
+};
 
+void Customer :: extendCar(int custID){
+    int choice;
+    cout << "Apakah anda ingin memperpanjang Sewa? "<< endl;
+    cout << "Ketik 1 untuk lanjut";
+    cin >> choice ;
+    if (choice == 1 )
+    {
+          int BookedCarID = customers[custID].get_isRenting();
+   int price = Booking :: calculateCost(BookedCarID,custID);
+    Booking :: payCar(BookedCarID, custID , price );
+        
+    }else customerMenu(custID);
+    
+  
+
+}
 void Customer::customerMenu(int custID) {
     int choice;
     cout << "Pilih menu yang ingin diakses: \n";
