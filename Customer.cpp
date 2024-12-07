@@ -68,11 +68,13 @@ int Customer::checkDatabase(string name, string password) {
 void Customer::returnCar(int custID) {
     int bookedCarID =customers[custID-1].get_isRenting();
     int choice;
+    int brand =  Car :: cars[bookedCarID-1].get_brand() ;
+    int model =  Car ::cars[bookedCarID-1].get_model();
     if (Customer ::customers[custID-1].get_isRenting() == -1) {
         cout << "Anda tidak sedang menyewa mobil!\n";
         Customer::customers[custID].customerMenu(custID);;
     }else
-     cout << "Apakah anda ingin mengembalikan mobil?\n" << Car :: cars[bookedCarID-1].get_brand()  << " " << Car ::cars[bookedCarID-1].get_model()  ;
+     cout << "Apakah anda ingin mengembalikan mobil?\n" << brand << " " << model ;
      cout << "Ketik 1 jika Iya\n" << "Ketik 0 untuk kembali ke Menu.\nn";
      cin >> choice;
      if (choice == 1)
