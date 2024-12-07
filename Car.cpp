@@ -117,18 +117,23 @@ void Car::displayAllCars(int custID) {
 
     if (cars[bookedCarID-1].get_availability() == 0)
     {
+        Customer::clearScreen();
         cout << "Maaf mobil tidak tersedia\n";
         displayAllCars(custID);
     };
 
     
-    if (bookedCarID < 0 || bookedCarID >6)  {
-        cout << "Tidak Valid."<< endl;
+    if (bookedCarID < 0 || bookedCarID > 6)  {
+        Customer::clearScreen();
+        cout << "Pilihan tidak valid."<< endl;
         displayAllCars(custID);
+
     } else if(bookedCarID == 0){
+        Customer::clearScreen();
         Customer :: customers[custID].customerMenu(custID);
 
-    } else   {  Booking::bookCar(bookedCarID, custID);}
-
-      
+    } else {
+        Customer::clearScreen();
+        Booking::bookCar(bookedCarID - 1, custID);
+    }
 }

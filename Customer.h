@@ -37,4 +37,5 @@ public:
     static void returnCar(int custID);
     void extendCar(int custID);
     static void logOut();
+    static void clearScreen();
 };

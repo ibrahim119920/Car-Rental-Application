@@ -18,5 +18,6 @@ public:
     static void bookCar(int bookedCarID, int custID);
     static int calculateCost(int bookedCarID, int custID);
     static void payCar(int bookedCarID, int custID, int totalPrice); 
+    static void printReceipt(int bookedCarID, int custID, int totalPrice);
 };
 
