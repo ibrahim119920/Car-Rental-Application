@@ -74,7 +74,7 @@ void Booking::payCar(int bookedCarID, int custID, int totalPrice) {
             
             Booking::printReceipt(bookedCarID, custID, totalPrice);
             
-            cout << "\n\nKetik apa saja untuk kembali ke menu: ";
+            cout << "\n\nKetik angka apa saja untuk kembali ke menu: ";
             
             int choice2;
             cin >> choice2;
