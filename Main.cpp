@@ -7,6 +7,8 @@
 using namespace std;
 
 int main() {
+    Customer :: loadCustomersFromFile();
+    Car::loadCarsFromFile("carList.txt");
     Customer::landingPage();
     return 0;
 }

@@ -68,14 +68,14 @@ int Customer::checkDatabase(string name, string password) {
 void Customer::returnCar(int custID) {
     int bookedCarID =customers[custID-1].get_isRenting();
     int choice;
-    int brand =  Car :: cars[bookedCarID-1].get_brand() ;
-    int model =  Car ::cars[bookedCarID-1].get_model();
+ 
+     
     if (Customer ::customers[custID-1].get_isRenting() == -1) {
         cout << "Anda tidak sedang menyewa mobil!\n";
         Customer::customers[custID].customerMenu(custID);;
     }else
-     cout << "Apakah anda ingin mengembalikan mobil?\n" << brand << " " << model ;
-     cout << "Ketik 1 jika Iya\n" << "Ketik 0 untuk kembali ke Menu.\nn";
+     cout << "Apakah anda ingin mengembalikan mobil?" << Car :: cars[bookedCarID-1].get_brand()  << " " <<  Car ::cars[bookedCarID-1].get_model(); 
+     cout << "\nKetik 1 jika Iya\n" << "Ketik 0 untuk kembali ke Menu.\n";
      cin >> choice;
      if (choice == 1)
      {
@@ -84,7 +84,7 @@ void Customer::returnCar(int custID) {
 
     // Logika pengembalian mobil
      Customer::customers[custID-1].set_isRenting(-1);
-     Car :: cars[custID].set_availability();
+     Car :: cars[custID-1].saveCarsToFile();
      saveCustomersToFile(); // Perbarui file
      cout << "Mobil berhasil dikembalikan.\n";
      Customer :: customers[custID].customerMenu(custID);
@@ -99,9 +99,11 @@ void Customer::returnCar(int custID) {
 };
 
 void Customer :: extendCar(int custID){
-    int BookedCarID = customers[custID].get_isRenting();
+    int BookedCarID = customers[custID-1].get_isRenting();
     int choice;
     int days, price;
+    int pilihan;
+    int pembayaran;
        if (BookedCarID == -1)
     {
         cout << " Anda belum sewa mobil.\n";
@@ -116,9 +118,23 @@ void Customer :: extendCar(int custID){
     cin >> days;
     
     price =Car :: cars[BookedCarID - 1].get_price() * days;
-    Booking :: payCar(BookedCarID, custID , price );
+     cout << "Anda akan membayar sebesar Rp" << price << ".\n";
+    cout << "1. Bayar\n" << "2. Kembali ke daftar mobil\n";
+    cout << "Pilihan : ";
+    cin >> pilihan;
+
+    switch (pilihan)
+    {
+    case 1:
+        cout<<"Pilih metode pembayaran : "<<endl;
+    cout<<"1. Dana\n2. BRI\n3. BNI\n4. Mandiri\n5. Gopay"<<endl;
+    cout<<"Pilihan : ";
+    cin>>pembayaran;
+
+    cout<<"Pembayaran Telah Berhasil"<<endl;
+    Customer :: customers[custID].customerMenu(custID);
         
-    }else customerMenu(custID);
+    }}else Customer :: customers[custID].customerMenu(custID);
     
   
 
@@ -240,8 +256,7 @@ void Customer::saveCustomersToFile() {
 }
 
 void Customer::landingPage() {
-    loadCustomersFromFile();
-    Car::loadCarsFromFile("carList.txt");
+    
 
 
     int i;
