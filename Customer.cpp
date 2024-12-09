@@ -30,6 +30,12 @@ void Customer::clearScreen() {
     cout.flush();
 }
 
+void displayHeader(const string &title) {
+    cout << "=====================================\n";
+    cout << "          " << title << "          \n";
+    cout << "=====================================\n";
+}
+
 int Customer::checkDatabase(string name, string password) {
     ifstream inFile("customerDatabase.txt");
     if (!inFile) {
@@ -61,6 +67,8 @@ void Customer::returnCar(int custID) {
         return;
     }
 
+    displayHeader("PENGEMBALIAN MOBIL");
+
     cout << "Apakah anda ingin mengembalikan mobil "
          << Car::cars[bookedCarID].get_brand() << " "
          << Car::cars[bookedCarID].get_model() << "?\n";
@@ -89,9 +97,12 @@ void Customer::extendCar(int custID) {
     if (bookedCarID == -1) {
         clearScreen();
         cout << "Anda belum menyewa mobil.\n";
+
         customers[custID].customerMenu(custID);
         return;
     }
+
+    displayHeader("PERPANJANG MASA PINJAM");
 
     int choice, days, price, pembayaran;
     cout << "Apakah anda ingin memperpanjang sewa "
@@ -107,6 +118,7 @@ void Customer::extendCar(int custID) {
 
         price = Car::cars[bookedCarID].get_price() * days;
         Customer::clearScreen();
+        displayHeader("PEMBAYARAN");
         cout << "Anda akan membayar sebesar Rp" << price << ".\n";
         cout << "1. Bayar\n2. Kembali ke daftar mobil\n";
         cout << "Pilihan: ";
@@ -119,9 +131,10 @@ void Customer::extendCar(int custID) {
             cin >> pembayaran;
             Customer::clearScreen();
             cout << "Pembayaran berhasil!\n";
+            Booking::printReceipt(bookedCarID, custID, price);
         }
     }
-
+    Customer::clearScreen();
     customers[custID].customerMenu(custID);
 }
 
@@ -130,6 +143,9 @@ void Customer::logOut() {
 }
 
 void Customer::customerMenu(int custID) {
+
+    displayHeader("RENTAL JOGJA");
+
     int choice;
     cout << "Selamat datang, " << customers[custID].get_name() << ". ";
     cout << "Pilih menu yang ingin diakses:\n";
@@ -168,6 +184,8 @@ void Customer::customerLogin() {
     string name, password;
     int customerID = -1;
 
+    displayHeader("LOGIN CUSTOMER");
+
     do {
         cout << "Nama: ";
         cin >> name;
@@ -205,6 +223,8 @@ void Customer::customerRegister() {
     string name, email, password;
     int customerID = customers.size() + 1;
 
+    displayHeader("PENDAFTARAN CUSTOMER");
+
     cout << "Masukkan nama: ";
     cin >> name;
     cout << "Masukkan email: ";
@@ -238,6 +258,7 @@ void Customer::saveCustomersToFile() {
 
 void Customer::landingPage() {
     int choice;
+    displayHeader("RENTAL JOGJA APP");
     cout << "Selamat datang di Rental Jogja!\n";
     cout << "1. Login ke akun yang sudah ada\n";
     cout << "2. Buat akun baru\n";

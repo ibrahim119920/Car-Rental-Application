@@ -25,6 +25,12 @@ string Car::get_brand() const { return brand; }
 int Car::get_price() const { return price; }
 bool Car::get_availability() const { return availability; }
 
+void displayHeader2(const string &title) {
+    cout << "=====================================\n";
+    cout << "          " << title << "          \n";
+    cout << "=====================================\n";
+}
+
 // Setter method
 void Car::set_availability() {
     if (availability == 0)
@@ -98,7 +104,7 @@ void Car::displayCar() const {
 
 // Display all cars
 void Car::displayAllCars(int custID) {
-    cout << "List of Cars:" << endl;
+    displayHeader2("DAFTAR MOBIL");
     cout << left << setw(10) << "CarID"
          << setw(15) << "Model"
          << setw(15) << "Brand"
