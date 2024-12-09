@@ -42,7 +42,7 @@ void Booking::bookCar(int bookedCarID, int custID) {
 // Fungsi untuk menghitung biaya sewa mobil
 int Booking::calculateCost(int bookedCarID, int custID) {
     int days;
-    cout << "Berapa lama Anda ingin menyewa? Masukkan jumlah hari: ";
+    cout << "Berapa lama Anda ingin menyewa? \nMasukkan jumlah hari: ";
     cin >> days;
 
     return cars[bookedCarID].get_price() * days;
@@ -74,7 +74,8 @@ void Booking::payCar(int bookedCarID, int custID, int totalPrice) {
             
             Booking::printReceipt(bookedCarID, custID, totalPrice);
             
-            cout << "\n\nKetik angka apa saja untuk kembali ke menu: ";
+            cout << "\n\nKetik angka apa saja untuk kembali ke menu.\n";
+            cout << "Pilihan: ";
             
             int choice2;
             cin >> choice2;

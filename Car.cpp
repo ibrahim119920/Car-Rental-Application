@@ -110,7 +110,8 @@ void Car::displayAllCars(int custID) {
         car.displayCar();
     }
 
-    cout << "Pilih ID mobil yang ingin disewa, atau ketik 0 untuk kembali: ";
+    cout << "Pilih ID mobil yang ingin disewa, atau ketik 0 untuk kembali. \n";
+    cout << "Pilihan: ";
     int bookedCarID;
     cin >> bookedCarID;
     

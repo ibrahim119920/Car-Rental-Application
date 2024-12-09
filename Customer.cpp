@@ -65,6 +65,7 @@ void Customer::returnCar(int custID) {
          << Car::cars[bookedCarID].get_brand() << " "
          << Car::cars[bookedCarID].get_model() << "?\n";
     cout << "Ketik 1 jika Iya\nKetik 0 untuk kembali ke Menu.\n";
+    cout << "Pilihan: ";
     cin >> choice;
 
     if (choice == 1) {
@@ -97,10 +98,11 @@ void Customer::extendCar(int custID) {
          << Car::cars[bookedCarID].get_brand() << " "
          << Car::cars[bookedCarID].get_model() << "?\n";
     cout << "Ketik 1 untuk lanjut dan 0 untuk kembali\n";
+    cout << "Pilihan: ";
     cin >> choice;
 
     if (choice == 1) {
-        cout << "Berapa lama anda ingin memperpanjang sewa? Masukkan jumlah hari: ";
+        cout << "Berapa lama anda ingin memperpanjang sewa? \nMasukkan jumlah hari: ";
         cin >> days;
 
         price = Car::cars[bookedCarID].get_price() * days;
@@ -239,6 +241,7 @@ void Customer::landingPage() {
     cout << "Selamat datang di Rental Jogja!\n";
     cout << "1. Login ke akun yang sudah ada\n";
     cout << "2. Buat akun baru\n";
+    cout << "Pilihan: ";
     cin >> choice;
 
     switch (choice) {
