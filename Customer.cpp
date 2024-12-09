@@ -81,12 +81,27 @@ void Customer::returnCar(int custID) {
         customers[custID].set_isRenting(-1);
         Car::cars[custID].saveCarsToFile();
         saveCustomersToFile();
-        Customer::clearScreen();
         cout << "Mobil berhasil dikembalikan.\n";
-        customers[custID].customerMenu(custID);
+
+        cout << "\nKetik angka apa saja untuk kembali ke menu.\n";
+        cout << "Pilihan: ";
+            
+        int choice2;
+        cin >> choice2;
+            
+        switch (choice2)
+        {
+        default:
+            Customer::clearScreen();
+            Customer::customers[custID].customerMenu(custID);
+            break;
+        }
+
     } else if (choice == 0) {
+        clearScreen();
         customers[custID].customerMenu(custID);
     } else {
+        clearScreen();
         cout << "Pilihan tidak valid!\n";
         returnCar(custID);
     }
@@ -129,13 +144,17 @@ void Customer::extendCar(int custID) {
             cout << "1. Dana\n2. BRI\n3. BNI\n4. Mandiri\n5. Gopay\n";
             cout << "Pilihan: ";
             cin >> pembayaran;
-            Customer::clearScreen();
             cout << "Pembayaran berhasil!\n";
+            clearScreen();
             Booking::printReceipt(bookedCarID, custID, price);
         }
     }
-    Customer::clearScreen();
-    customers[custID].customerMenu(custID);
+    else
+    {
+        clearScreen();
+        customers[custID].customerMenu(custID);
+    }
+    
 }
 
 void Customer::logOut() {
@@ -174,6 +193,7 @@ void Customer::customerMenu(int custID) {
             logOut();
             break;
         default:
+            clearScreen();
             cout << "Pilihan tidak valid!\n";
             customerMenu(custID);
             break;

@@ -3,4 +3,4 @@ namadua emaildua pwdua 2 -1
 namatiga emailtiga pwtiga 3 -1
 namaempat emailempat pwempat 4 -1
 namalima emaillima pwlima 5 3
-bagasadjie bagas@mail.id bagas123 6 0
+bagasadjie bagas@mail.id bagas123 6 -1
